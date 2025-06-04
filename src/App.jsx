@@ -82,6 +82,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Products />}></Route>
+      <Route path="/tab" element={<Tab />} ></Route>
       <Route path="/about" element={<About />}></Route>
       <Route path="/products/:id" element={<ProductDetails />}></Route>
     </Routes>

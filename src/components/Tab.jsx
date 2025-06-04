@@ -257,15 +257,17 @@ const Tab = () => {
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
     const [activeTab, setActiveTab] = useState(0);
+    //0
+    //1
 
     const tabs = [
         {
             id: 0,
             title: 'Personal Info',
             content: (
-                <div>
+                <div className="space-y-6">
                     <div>
-                        <label htmlFor="firstName">First name</label>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 capitalize">First Name</label>
                         <input
                             type="text"
                             name="firstName"
@@ -273,11 +275,11 @@ const Tab = () => {
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                         />
                     </div>
-
                     <div>
-                        <label htmlFor="lastName">Last name</label>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 capitalize">Last Name</label>
                         <input
                             type="text"
                             name="lastName"
@@ -285,6 +287,7 @@ const Tab = () => {
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
                             required
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                         />
                     </div>
                 </div>
@@ -294,9 +297,9 @@ const Tab = () => {
             id: 1,
             title: 'Contact Info',
             content: (
-                <div>
+                <div className="space-y-6">
                     <div>
-                        <label htmlFor="phone">phone</label>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 capitalize">Phone</label>
                         <input
                             type="text"
                             id="phone"
@@ -304,10 +307,11 @@ const Tab = () => {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             required
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                         />
                     </div>
                     <div>
-                        <label htmlFor="email">email</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 capitalize">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -315,6 +319,7 @@ const Tab = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                         />
                     </div>
                 </div>
@@ -324,9 +329,9 @@ const Tab = () => {
             id: 2,
             title: 'Address',
             content: (
-                <div>
+                <div className="space-y-6">
                     <div>
-                        <label htmlFor="street">street</label>
+                        <label htmlFor="street" className="block text-sm font-medium text-gray-700 capitalize">Street</label>
                         <input
                             type="text"
                             id="street"
@@ -334,10 +339,11 @@ const Tab = () => {
                             value={street}
                             onChange={(e) => setStreet(e.target.value)}
                             required
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                         />
                     </div>
                     <div>
-                        <label htmlFor="city">city</label>
+                        <label htmlFor="city" className="block text-sm font-medium text-gray-700 capitalize">City</label>
                         <input
                             type="text"
                             id="city"
@@ -345,6 +351,7 @@ const Tab = () => {
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                             required
+                            className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                         />
                     </div>
                 </div>
@@ -353,33 +360,69 @@ const Tab = () => {
     ];
 
     const handleNext = () => {
-        if(activeTab < tabs.length - 1){
+        // 0 < 4
+        if (activeTab < tabs.length - 1) {
             setActiveTab(activeTab + 1);
-        }else{
+        } else {
             setActiveTab(0)
         }
     }
 
 
     const handlePrev = () => {
-        if(activeTab === 0){
+        if (activeTab === 0) {
             return
-        }else{
+        } else {
             setActiveTab(activeTab - 1)
         }
     }
+
+
     return (
-        <div>
-            {tabs.map((tab) => (
-                tab.id === activeTab && (
-                    <div key={tab.id}>
-                        <h2>{tab.title}</h2>
-                        {tab.content}
-                    </div>
-                )
-            ))}
-            <button onClick={handlePrev}>{activeTab === 0 ? "" : "prev"}</button>
-            <button onClick={handleNext}>{activeTab === tabs.length - 1 ? "submit" : "next"}</button>
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+                <div className="flex justify-between mb-6 border-b border-gray-200">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`flex-1 py-3 text-sm font-medium capitalize transition-colors duration-200 ${activeTab === tab.id
+                                    ? 'border-b-2 border-blue-500 text-blue-600'
+                                    : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            {tab.title}
+                        </button>
+                    ))}
+                </div>
+                <div className="transition-opacity duration-300">
+                    {tabs.map((tab) => (
+                        tab.id === activeTab && (
+                            <div key={tab.id}>
+                                <h2 className="text-xl font-semibold text-gray-800 mb-4 capitalize">{tab.title}</h2>
+                                {tab.content}
+                            </div>
+                        )
+                    ))}
+                </div>
+                <div className="flex justify-between mt-8">
+                    <button
+                        onClick={handlePrev}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${activeTab === 0
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                            }`}
+                    >
+                        {activeTab === 0 ? 'Prev' : 'Prev'}
+                    </button>
+                    <button
+                        onClick={handleNext}
+                        className="px-4 py-2 rounded-md text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+                    >
+                        {activeTab === tabs.length - 1 ? 'Submit' : 'Next'}
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

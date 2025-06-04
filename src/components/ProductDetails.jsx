@@ -13,7 +13,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [id, fetchData])
 
     console.log(id);
     return (
